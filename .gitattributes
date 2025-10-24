@@ -1,0 +1,2 @@
+data/consolidation-etalab-schema-irve-statique-v-2.3.1-20251024.csv filter=lfs diff=lfs merge=lfs -text
+data/consolidation-etalab-schema-irve-statique-v-2.3.1-20251024.geojson filter=lfs diff=lfs merge=lfs -text

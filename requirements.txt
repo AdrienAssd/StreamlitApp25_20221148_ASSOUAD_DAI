@@ -1,0 +1,13 @@
+streamlit>=1.33
+pandas
+numpy
+pyarrow
+plotly
+pydeck
+# Geospatial stack (recommended via conda-forge on macOS/Linux)
+geopandas
+shapely
+fiona
+pyproj
+rtree
+python-dateutil
