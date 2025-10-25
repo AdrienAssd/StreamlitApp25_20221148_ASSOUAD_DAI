@@ -6,6 +6,7 @@ One-line: Interactive Streamlit dashboard exploring EV charging stations in Fran
 
 
 Live demo: https://app25-20221148-asouad-dai.streamlit.app
+Repository: https://github.com/AdrienAssd/StreamlitApp25_20221148_ASSOUAD_DAI
 
 ## Overview
 
@@ -45,6 +46,7 @@ assets/               # images / static assets
 ## Data & pipeline
 
 - Source: consolidation IRVE CSV + GeoJSON in `data/`.
+- Official dataset: https://www.data.gouv.fr/datasets/base-nationale-des-irve-infrastructures-de-recharge-pour-vehicules-electriques/
 - The app cleans and caches data on first run (via `utils.prep`). No manual preprocessing required.
 - Recommendation: use `id_station_itinerance` for robust station counts when available.
 
