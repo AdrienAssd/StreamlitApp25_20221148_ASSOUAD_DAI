@@ -3,7 +3,7 @@ import pandas as pd
 from utils.viz import plot_timeseries, bar_chart
 
 
-def render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart):
+def render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart, operator_metric: str = "Stations (unique)"):
     """Render KPIs, the main timeseries and top-operators bar chart.
 
     Parameters
@@ -53,8 +53,15 @@ def render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart):
     if filtered_chart is None or filtered_chart.empty:
         st.info("No data for operators chart.")
     else:
-        by_op = (
-            filtered_chart.groupby("nom_operateur").agg(**{"Nombre de stations": ("nom_station", "nunique")}).reset_index()
-        )
-        by_op = by_op.sort_values("Nombre de stations", ascending=False).head(15)
-        bar_chart(by_op)
+        # operator_metric controls whether we count unique stations or raw rows
+        if operator_metric == "Observations (rows)":
+            ops = filtered_chart["nom_operateur"].fillna("UNKNOWN") if "nom_operateur" in filtered_chart.columns else pd.Series(["UNKNOWN"])
+            df_ops = ops.value_counts().head(15).reset_index()
+            df_ops.columns = ["nom_operateur", "Nombre de stations"]
+            bar_chart(df_ops)
+        else:
+            by_op = (
+                filtered_chart.groupby("nom_operateur").agg(**{"Nombre de stations": ("nom_station", "nunique")}).reset_index()
+            )
+            by_op = by_op.sort_values("Nombre de stations", ascending=False).head(15)
+            bar_chart(by_op)

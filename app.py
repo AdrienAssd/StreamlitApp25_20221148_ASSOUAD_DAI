@@ -88,13 +88,12 @@ with st.sidebar:
     # Operator selection
     operators = st.multiselect("Operator(s) (optional)", operator_options)
 
-    # Metric selection
+    # Metric selection (controls Top15 operator chart and maps to timeseries)
     metric = st.selectbox(
         "Metric",
         [
-            "Number of Stations",
-            "Number of Charging Points",
-            "Total Installed Power (kW)",
+            "Stations (unique)",
+            "Observations (rows)",
         ],
     )
 
@@ -169,19 +168,18 @@ timeseries = (
 )
 timeseries = timeseries.sort_values("year")
 
-# Choose y column and label based on metric selection
-if metric == "Number of Stations":
+# Choose y column and label based on unified metric selection
+if metric == "Stations (unique)":
     # Cumulate stations by year
     timeseries["cum_stations"] = timeseries["nom_station"].fillna(0).cumsum()
     y_col = "cum_stations"
     y_label = "Cumulative Number of Stations"
 else:
-    if metric == "Number of Charging Points":
-        y_col = "nbre_pdc"
-        y_label = "Number of Charging Points"
-    else:
-        y_col = "puissance_total"
-        y_label = "Total Installed Power (kW)"
+    # Observations (rows) -> show cumulative Number of Charging Points (PDC)
+    # (cumulative to avoid decreases year-over-year caused by per-year sums)
+    timeseries["cum_pdc"] = timeseries["nbre_pdc"].fillna(0).cumsum()
+    y_col = "cum_pdc"
+    y_label = "Cumulative Number of Charging Points"
 
 # guard: fill NaN with 0 for aggregates
 timeseries[y_col] = timeseries[y_col].fillna(0)
@@ -189,14 +187,9 @@ timeseries[y_col] = timeseries[y_col].fillna(0)
 # compute year-over-year pct change (1-year change) on the chosen series
 timeseries["pct_change"] = timeseries[y_col].pct_change()
 
-render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart)
+render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart, operator_metric=metric)
 
 render_deep_dives(filtered_chart)
-
-# --- Bar chart ---
-st.subheader("Top 15 Operators by Station Count")
-tables_filtered = make_tables(filtered_chart)
-bar_chart(tables_filtered.get("by_region", pd.DataFrame()))
 
 # --- Power & technology analysis ---
 st.markdown("### Power & Technology — Distribution and Evolution")
