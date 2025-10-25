@@ -406,7 +406,7 @@ def plot_heatmap_and_station_map(filtered_chart: pd.DataFrame):
 
         st.pydeck_chart(
             pdk.Deck(
-                map_style="mapbox://styles/mapbox/light-v10",
+                map_style=None,
                 initial_view_state=pdk.ViewState(
                     latitude=scatter_src["latitude"].mean(),
                     longitude=scatter_src["longitude"].mean(),
