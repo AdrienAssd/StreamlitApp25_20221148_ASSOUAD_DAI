@@ -364,7 +364,7 @@ def plot_heatmap_and_station_map(filtered_chart: pd.DataFrame):
         agg = _downsample_df(agg, MAX_HEAT_POINTS)
 
         heat = pdk.Deck(
-            map_style="mapbox://styles/mapbox/light-v10",
+            map_style=None,
             initial_view_state=pdk.ViewState(
                 latitude=agg["latitude"].mean() if not agg.empty else 46.6,
                 longitude=agg["longitude"].mean() if not agg.empty else 2.4,
