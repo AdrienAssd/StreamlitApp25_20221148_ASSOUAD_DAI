@@ -4,9 +4,10 @@ Adrien ASSOUAD | adrien.assouad@efrei.net
 
 One-line: Interactive Streamlit dashboard exploring EV charging stations in France.
 
+
 Live demo: https://app25-20221148-asouad-dai.streamlit.app
 
-Overview
+## Overview
 
 This small project analyzes the national IRVE dataset (data.gouv.fr) to provide:
 - Operator rankings (Top 15 by stations or by observations)
@@ -14,13 +15,14 @@ This small project analyzes the national IRVE dataset (data.gouv.fr) to provide:
 - Interactive maps (pydeck) with a fallback to `st.map` when no Mapbox key
 - Filters for department/commune/operator and date range
 
-Quick start
+## Quick start
 
-Prerequisites
+### Prerequisites
+
 - Python 3.8+
 - pip
 
-Install and run
+### Install and run
 
 ```bash
 python -m pip install -r requirements.txt
@@ -29,7 +31,7 @@ streamlit run app.py
 
 Open http://localhost:8501
 
-Minimal project structure
+## Minimal project structure
 
 ```
 app.py                # Streamlit entrypoint
@@ -40,25 +42,25 @@ utils/                # preprocessing and visualization helpers
 assets/               # images / static assets
 ```
 
-Data & pipeline
+## Data & pipeline
 
 - Source: consolidation IRVE CSV + GeoJSON in `data/`.
-- The app cleans and caches data on first run (via utils.prep). No manual preprocessing required.
+- The app cleans and caches data on first run (via `utils.prep`). No manual preprocessing required.
 - Recommendation: use `id_station_itinerance` for robust station counts when available.
 
-Notes
+## Notes
 
 - Map tiles (pydeck) require a Mapbox key set in Streamlit secrets or env var `MAPBOX_API_KEY`.
-	If not present the app uses `st.map` and displays a message.
+  If not present the app uses `st.map` and displays a message.
 - The sidebar "Metric" selector toggles Top15 behavior:
-	- "Stations (unique)": counts unique station identifiers (dedup by `nom_station` by default)
-	- "Observations (rows)": counts raw rows; timeseries uses cumulative PDC to avoid year-to-year drops
+  - "Stations (unique)": counts unique station identifiers (dedup by `nom_station` by default)
+  - "Observations (rows)": counts raw rows; timeseries uses cumulative PDC to avoid year-to-year drops
 
-Troubleshooting
+## Troubleshooting
 
 - If maps show only points (no tiles): add `MAPBOX_API_KEY` to Streamlit Cloud secrets.
 
-Contact
+## Contact
 
 Adrien ASSOUAD — adrien.assouad@efrei.net
 
