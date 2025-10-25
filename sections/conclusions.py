@@ -8,7 +8,7 @@ def render_conclusions(filtered_chart, raw_df=None, choropleth_func=None):
     choropleth_func: callable(filtered_chart, metric) - optional function to render department choropleth
     """
     # Section header
-    st.markdown("##Data Quality & Limitations")
+    st.markdown("## Data Quality & Limitations")
     st.markdown(
         "The Choropleth is the critical tool for evaluating territorial equity, measuring regional disparities in infrastructure. Identifying the Top 10 Departments clearly names the deployment leaders. Conversely, the departments at the bottom of the ranking provide the evidence needed to justify political intervention or investment to ensure equitable access to electric mobility for all citizens, regardless of location."
     )
