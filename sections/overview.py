@@ -12,9 +12,8 @@ def render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart, operator
     - y_col, y_label: series to plot
     - filtered_chart: filtered DataFrame used to compute operator counts
     """
-    # Section header
     st.markdown("## Overview")
-    # User-provided overview paragraph: infrastructure context
+
     st.markdown(
         "The French EV infrastructure has reached an impressive scale with 17,120 stations and almost 1.2 million charging points since 2010. "
         "This section establishes the context of rapid growth, emphasizing that the Average Nominal Power (89.3 kW) is the primary quality metric to track. "
@@ -36,7 +35,6 @@ def render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart, operator
     # Timeseries
     plot_timeseries(timeseries, y_col, y_label)
 
-    # Storytelling paragraph for overview (more fluid)
     st.markdown(
         "High‑level metrics and an annotated time series give fast, actionable answers: how many sites and charging points exist, "
         "what typical station power looks like, and whether growth matches capacity. The top-operator view highlights market concentration, "
@@ -45,7 +43,7 @@ def render_overview(kpi_df, timeseries, y_col, y_label, filtered_chart, operator
 
     # Top operators
     st.subheader("Top 15 Operators by Station Count")
-    # User-provided paragraph about Top 15 Operators
+
     st.markdown(
         "The analysis of the Top 15 Operators is crucial for understanding market concentration. While dominance by a few large players ensures deployment efficiency, it raises questions about network resilience and diversity of supply. This view allows regulators to target key market leaders and ensure their deployment strategies cover the entire national territory."
     )

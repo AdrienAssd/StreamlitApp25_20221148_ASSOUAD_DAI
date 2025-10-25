@@ -9,7 +9,6 @@ def render_conclusions(filtered_chart, raw_df=None, choropleth_func=None):
     """
     # Section header
     st.markdown("##Data Quality & Limitations")
-    # Choropleth explanatory paragraph (user-provided)
     st.markdown(
         "The Choropleth is the critical tool for evaluating territorial equity, measuring regional disparities in infrastructure. Identifying the Top 10 Departments clearly names the deployment leaders. Conversely, the departments at the bottom of the ranking provide the evidence needed to justify political intervention or investment to ensure equitable access to electric mobility for all citizens, regardless of location."
     )
@@ -34,7 +33,6 @@ def render_conclusions(filtered_chart, raw_df=None, choropleth_func=None):
     total_raw = len(raw_df) if raw_df is not None else None
     total_filtered = len(filtered_chart) if filtered_chart is not None else 0
 
-    # User-provided Data Quality & Limitations paragraph with dynamic counts
     if total_raw is not None:
         st.markdown(
             f"The credibility of the narrative rests on the cleaning process: the analysis is based on {total_filtered:,} filtered rows from a raw dataset of {total_raw:,} rows, with "

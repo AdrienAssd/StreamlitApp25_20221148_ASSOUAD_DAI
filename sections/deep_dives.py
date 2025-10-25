@@ -7,7 +7,6 @@ def render_deep_dives(filtered_chart):
     # Section header
     st.markdown("## Deep dives")
 
-    # User-provided paragraph: Deep Dives - Power Distribution & Trend
     st.markdown(
         "The power analysis reveals a counter-intuitive trend: the median nominal power dropped from ~150 kW (in 2010) to ~24 kW (in 2025). "
         "This drop strongly suggests a paradigm shift where the massive explosion of lower-power AC destination charging (residential, parking) is pulling the median down, potentially masking a rise in fast-charger (DC) power. It is essential to separate the analysis of the two technologies to assess true long-distance charging capacity."
@@ -16,7 +15,6 @@ def render_deep_dives(filtered_chart):
     # Power-focused visuals
     plot_power_section(filtered_chart)
 
-    # Storytelling paragraph for deep dives (more fluid)
     st.markdown(
         "Deeper analyses probe practical questions: are newer installs delivering higher power, how skewed is the power distribution, "
         "and where do station clusters form? These views help reveal local hotspots and gaps, informing deployment choices or targeted policies."
